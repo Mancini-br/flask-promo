@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Cadastrar Loja - Lojas com Desconto</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+  <style>
+    body {
+      background: linear-gradient(135deg, #74ebd5 0%, #ACB6E5 100%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .card {
+      width: 100%;
+      max-width: 600px;
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+      background-color: #ffffff;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 25px;
+      font-weight: 600;
+      color: #333;
+    }
+
+    label {
+      font-weight: 500;
+      margin-top: 10px;
+    }
+
+    .btn-primary {
+      width: 100%;
+      padding: 12px;
+      border-radius: 30px;
+      margin-top: 20px;
+      background-color: #007bff;
+      border: none;
+    }
+
+    .btn-primary:hover {
+      background-color: #0056b3;
+    }
+
+    .btn-secondary {
+      width: 100%;
+      padding: 12px;
+      border-radius: 30px;
+      margin-top: 10px;
+      background-color: #6c757d;
+      border: none;
+    }
+
+    .btn-secondary:hover {
+      background-color: #5a6268;
+    }
+
+    .btn-location {
+      background-color: #17a2b8;
+      color: white;
+      border-radius: 30px;
+      margin-top: 10px;
+      padding: 10px 20px;
+      font-size: 0.9rem;
+      border: none;
+    }
+
+    .btn-location:hover {
+      background-color: #138496;
+    }
+  </style>
+</head>
+<body>
+
+<div class="card">
+  <h1>Cadastrar Loja</h1>
+  <form action="/cadastrar" method="post">
+    <div class="mb-3">
+      <label for="nome" class="form-label">Nome da Loja:</label>
+      <input type="text" class="form-control" id="nome" name="nome" required>
+    </div>
+
+    <div class="mb-3">
+      <label for="descricao" class="form-label">Descrição:</label>
+      <textarea class="form-control" id="descricao" name="descricao" rows="3" required></textarea>
+    </div>
+
+    <div class="mb-3">
+      <label for="latitude" class="form-label">Latitude:</label>
+      <input type="text" class="form-control" id="latitude" name="latitude" required>
+    </div>
+
+    <div class="mb-3">
+      <label for="longitude" class="form-label">Longitude:</label>
+      <input type="text" class="form-control" id="longitude" name="longitude" required>
+    </div>
+
+    <button type="button" class="btn btn-location" onclick="getLocation()">Usar minha localização atual</button>
+
+    <div class="mb-3 mt-3">
+      <label for="desconto" class="form-label">Desconto (%):</label>
+      <input type="number" class="form-control" id="desconto" name="desconto" required>
+    </div>
+
+    <div class="mb-3">
+      <label for="validade_dias" class="form-label">Validade da Promoção (dias):</label>
+      <input type="number" class="form-control" id="validade_dias" name="validade_dias" value="7" required>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Cadastrar Loja</button>
+    <a href="/admin" class="btn btn-secondary">Voltar para Administração</a>
+  </form>
+</div>
+
+<script>
+  function getLocation() {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(function(position) {
+        document.getElementById('latitude').value = position.coords.latitude;
+        document.getElementById('longitude').value = position.coords.longitude;
+      }, function(error) {
+        alert('Erro ao obter localização. Permita o acesso ao GPS.');
+      });
+    } else {
+      alert('Geolocalização não é suportada por este navegador.');
+    }
+  }
+</script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

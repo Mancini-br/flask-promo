@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Loja</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f4f7fc;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .container {
+            max-width: 700px;
+            margin: 40px auto;
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 30px;
+        }
+
+        .form-group label {
+            font-weight: bold;
+        }
+
+        .btn-save {
+            background-color: #28a745;
+            color: white;
+            border-radius: 25px;
+            padding: 10px 30px;
+        }
+
+        .btn-save:hover {
+            background-color: #218838;
+        }
+
+        .btn-back {
+            background-color: #007bff;
+            color: white;
+            border-radius: 25px;
+            padding: 10px 30px;
+            margin-right: 10px;
+        }
+
+        .btn-back:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Editar Loja</h1>
+    <form method="POST" action="/atualizar_loja/{{ loja[0] }}">
+        <div class="form-group">
+            <label for="nome">Nome da Loja:</label>
+            <input type="text" class="form-control" id="nome" name="nome" value="{{ loja[1] }}" required>
+        </div>
+
+        <div class="form-group">
+            <label for="descricao">Descrição:</label>
+            <input type="text" class="form-control" id="descricao" name="descricao" value="{{ loja[2] }}" required>
+        </div>
+
+        <div class="form-group">
+            <label for="latitude">Latitude:</label>
+            <input type="text" class="form-control" id="latitude" name="latitude" value="{{ loja[3] }}" required>
+        </div>
+
+        <div class="form-group">
+            <label for="longitude">Longitude:</label>
+            <input type="text" class="form-control" id="longitude" name="longitude" value="{{ loja[4] }}" required>
+        </div>
+
+        <div class="form-group">
+            <label for="desconto">Desconto (%):</label>
+            <input type="number" class="form-control" id="desconto" name="desconto" value="{{ loja[5] }}" required>
+        </div>
+
+        <div class="form-group">
+            <label for="validade_dias">Validade (dias):</label>
+            <input type="number" class="form-control" id="validade_dias" name="validade_dias" value="{{ loja[6] }}" required>
+        </div>
+
+        <div class="text-center mt-4">
+            <a href="/admin" class="btn btn-back">Voltar</a>
+            <button type="submit" class="btn btn-save">Salvar Alterações</button>
+        </div>
+    </form>
+</div>
+
+</body>
+</html>

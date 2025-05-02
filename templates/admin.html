@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Lojas com Desconto</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f4f7fc;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        .container {
+            margin-top: 50px;
+        }
+        .btn-back, .btn-custom {
+            border-radius: 30px;
+            padding: 10px 30px;
+            font-size: 1rem;
+        }
+        .btn-custom {
+            background-color: #28a745;
+            color: white;
+        }
+        .btn-back {
+            background-color: #007bff;
+            color: white;
+        }
+        .btn-edit {
+            background-color: #17a2b8;
+            color: white;
+            border-radius: 30px;
+        }
+        .btn-delete {
+            background-color: #dc3545;
+            color: white;
+            border-radius: 30px;
+        }
+        .card-header {
+            background-color: #007bff;
+            color: white;
+            text-align: center;
+            font-size: 1.5rem;
+            border-radius: 15px 15px 0 0;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Admin - Lojas com Desconto</h1>
+    <a href="/cadastrar" class="btn btn-custom">Cadastrar Nova Loja</a>
+    <a href="/" class="btn btn-back">Voltar</a>
+
+    <div class="card mt-4">
+        <div class="card-header">
+            Lojas Cadastradas
+        </div>
+        <div class="card-body">
+            {% if lojas %}
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nome</th>
+                        <th>Descrição</th>
+                        <th>Desconto</th>
+                        <th>Data Criação</th>
+                        <th>Validade (Dias)</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for loja in lojas %}
+                    <tr>
+                        <td>{{ loja[0] }}</td>
+                        <td>{{ loja[1] }}</td>
+                        <td>{{ loja[2] }}</td>
+                        <td>{{ loja[5] }}%</td>
+                        <td>{{ loja[6][:10] }}</td>
+                        <td>{{ loja[7] }}</td>
+                        <td>
+                            <a href="/editar_loja/{{ loja[0] }}" class="btn btn-edit">Editar</a>
+                            <form action="/excluir_loja/{{ loja[0] }}" method="post" style="display:inline;">
+                                <button type="submit" class="btn btn-delete">Excluir</button>
+                            </form>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            {% else %}
+            <p class="text-center">Nenhuma loja cadastrada.</p>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
